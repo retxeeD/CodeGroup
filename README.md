@@ -54,9 +54,10 @@ src
 
 ### Passos
 
-1. Clone o repositório: https://github.com/retxeeD/CodeGroup.git
-2. 
-
+1. Clone o repositório: 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+  git clone https://github.com/retxeeD/CodeGroup.git
+```
+
+2. Definir valor da variavel de ambiente BROWSER atraver das configurações de Run/Debug configurations com nome do navegador desejado
+3. Executar os testes
