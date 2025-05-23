@@ -14,7 +14,7 @@ import io.cucumber.junit.CucumberOptions;
                 "json:target/cucumber-report.json"
         },
         monochrome = true
-        //tags = "@CT-003"
+        //tags = "@CT-AUT-011"
 )
 public class TestRunner {
 }

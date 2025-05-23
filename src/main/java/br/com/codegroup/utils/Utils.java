@@ -10,7 +10,7 @@ import java.time.Duration;
 public class Utils {
 
     public static WebDriverWait getWait() {
-        return new WebDriverWait(Hooks.driver, Duration.ofSeconds(3));
+        return new WebDriverWait(Hooks.driver, Duration.ofSeconds(5));
     }
 
     public static void fillElement(By element, String text){

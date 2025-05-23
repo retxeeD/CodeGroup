@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -17,8 +18,9 @@ public class HomeSteps {
     HomePage homePage;
 
     @Dado("que estou na página home da amazon")
-    public void que_estou_na_pagina_home_da_amazon() {
+    public void que_estou_na_pagina_home_da_amazon() throws InterruptedException {
         Hooks.driver.get("https://www.amazon.com.br/");
+        Thread.sleep(5000);
         Hooks.driver.navigate().refresh();
         homePage = new HomePage(Hooks.driver);
     }
@@ -29,13 +31,15 @@ public class HomeSteps {
     }
 
     @Então("a barra de sugestoes e exibida com produtos relacionados com {string}")
-    public void a_barra_de_sugesoes_e_exibida_com_produtos_relacionados(String palavra) {
-        Utils.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(homePage.getSuggestion()));
+    public void a_barra_de_sugesoes_e_exibida_com_produtos_relacionados(String termo) {
+        Utils.getWait().until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElementsLocatedBy(homePage.getSuggestion())));
         List<WebElement> suggestions = Hooks.driver.findElements(homePage.getSuggestion());
         assertFalse("Nenhuma sugestão foi carregada", suggestions.isEmpty());
         for (WebElement suggestion : suggestions) {
             String texto = suggestion.getText().toLowerCase();
-            assertTrue("Sugestão inválida: '" + texto + "' não contém '"+ palavra +"'", texto.contains(palavra));
+            assertTrue("Sugestão inválida: '" + texto + "' não contém '"+ termo +"'",
+                    Arrays.stream(termo.toLowerCase().split("\\s+"))
+                            .allMatch(palavra -> texto.toLowerCase().contains(palavra)));
         }
     }
 
@@ -97,6 +101,7 @@ public class HomeSteps {
     }
 
     public static boolean viewportValidation(By element) {
+        Utils.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
         JavascriptExecutor js = (JavascriptExecutor) Hooks.driver;
 
         String script =

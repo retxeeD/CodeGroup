@@ -6,7 +6,7 @@ Este projeto realiza testes automatizados utilizando Java, Selenium WebDriver, C
 
 ## 🧰 Tecnologias Utilizadas
 
-- **Java 17+**
+- **Java 11 ou superior (recomendável 17+)**
 - **Maven**
 - **Selenium WebDriver**
 - **Cucumber (Gherkin)**
@@ -28,16 +28,16 @@ src
 │ ├── steps # Step Definitions  
 │ │ ├── HomeSteps.java  
 │ │ └── Hooks.java  
-│ └── utils # Utilitários  
+│ └── utils # Trechos de código úteis que podem ser utilizados por N classes  
 │ └── Utils.java  
 ├── test  
 │ └── resources  
-│ ├── drivers # WebDriver executáveis  
+│ ├── drivers # WebDrivers dos navegadores  
 │ │ ├── chromedriver.exe  
 │ │ └── msedgedriver.exe  
-│ └── features # Arquivos .feature (Gherkin)  
+│ └── features # Arquivos de testes .feature em BDD  
 │ └── home.feature  
-├──target/  
+├──target/  # Arquivos de reporte  
 │ └──  cucumber-report.html  
 
 
